@@ -37,9 +37,8 @@ def run() -> None:
 
                 for n in new:
                     msg = (
-                        "🔔 <b>NEW NOTIFICATION</b>\n\n"
-                        f"📅 <i>{n.get('time', 'N/A')}</i>\n"
-                        f"📝 {n.get('text', 'No content')}"
+                        f"{n.get('text', 'No content')}\n\n"
+                        f"📅 {n.get('time', 'N/A')}"
                     )
                     send_message(msg)
                     logger.info(f"Sent notification to Telegram: {n.get('text', '')[:30]}...")
