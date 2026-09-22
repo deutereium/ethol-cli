@@ -12,3 +12,5 @@ venv/
 
 # State file (stores last notification IDs)
 state.json
+
+*.bak

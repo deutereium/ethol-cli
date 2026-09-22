@@ -27,12 +27,18 @@ def save_last_ids(ids: set) -> None:
 
 def filter_new(notifications: list) -> list:
     """Given a list of notification dicts (each with an 'id' key),
-    return only those whose IDs are not already stored. Also updates
-    the persisted state with any newly seen IDs.
+    return only those whose IDs are not already stored.
+    Does NOT modify state — call mark_sent() once an item has been
+    successfully delivered.
     """
     seen = load_last_ids()
-    new_items = [n for n in notifications if n.get("id") not in seen]
-    if new_items:
-        seen.update({n.get("id") for n in new_items})
-        save_last_ids(seen)
-    return new_items
+    return [n for n in notifications if n.get("id") not in seen]
+
+
+def mark_sent(items: list) -> None:
+    """Persist the given notification IDs as already sent.
+    Only call this after the notification has been successfully delivered.
+    """
+    seen = load_last_ids()
+    seen.update({n.get("id") for n in items})
+    save_last_ids(seen)

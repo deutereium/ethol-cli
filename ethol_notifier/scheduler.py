@@ -4,14 +4,14 @@ import logging
 
 from .auth import login
 from .scraper import fetch_notifications
-from .state import filter_new
+from .state import filter_new, mark_sent
 from .telegram import send_message
 
 # Set up simple console logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-CHECK_INTERVAL_SECONDS = 5 * 60  # 5 minutes
+CHECK_INTERVAL_SECONDS = 3 * 60  # 3 minutes
 START_HOUR = 5   # 05:00
 END_HOUR = 21   # up to but not including 21:00
 
@@ -41,6 +41,7 @@ def run() -> None:
                         f"📅 {n.get('time', 'N/A')}"
                     )
                     send_message(msg)
+                    mark_sent([n])
                     logger.info(f"Sent notification to Telegram: {n.get('text', '')[:30]}...")
             except Exception as e:
                 logger.error(f"Error during check: {e}")
