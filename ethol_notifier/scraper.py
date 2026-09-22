@@ -74,6 +74,7 @@ def get_class_list(session: requests.Session, tahun: int, semester: int) -> list
             "id": entry.get("nomor"),
             "nama": matakuliah.get("nama") or entry.get("nama") or "",
             "jenis_schema": entry.get("jenisSchema") or entry.get("jenis_schema"),
+            "kuliah_asal": entry.get("kuliah_asal"),
             "kelas": entry.get("kelas"),
             "pararel": entry.get("pararel"),
             "dosen": entry.get("dosen"),
