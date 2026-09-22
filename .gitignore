@@ -13,4 +13,8 @@ venv/
 # State file (stores last notification IDs)
 state.json
 
+# Test inspection artifacts
+tests/dashboard.html
+tests/dashboard_raw.html
+
 *.bak

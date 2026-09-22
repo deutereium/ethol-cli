@@ -28,9 +28,10 @@ def main():
     for c in sess.cookies:
         print(f"  {c.name} = {c.value[:20]}…")
     # Save the raw HTML for manual inspection
-    with open("dashboard_raw.html", "w", encoding="utf-8") as f:
+    out_path = os.path.join(os.path.dirname(__file__), "dashboard_raw.html")
+    with open(out_path, "w", encoding="utf-8") as f:
         f.write(resp.text)
-    print("Saved raw HTML to dashboard_raw.html (first 200 chars):")
+    print("Saved raw HTML to", out_path, "(first 200 chars):")
     print(resp.text[:200])
 
 if __name__ == "__main__":

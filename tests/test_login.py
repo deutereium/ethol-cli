@@ -5,6 +5,14 @@ It uses the same login logic as the notifier. If login succeeds, it prints
 "Login successful"; otherwise it prints the exception.
 """
 
+import sys
+import os
+
+# Ensure the package folder is on the import path
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if BASE_DIR not in sys.path:
+    sys.path.append(BASE_DIR)
+
 from ethol_notifier.auth import login
 
 def main():
