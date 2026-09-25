@@ -18,3 +18,12 @@ tests/dashboard.html
 tests/dashboard_raw.html
 
 *.bak
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+.claude/
+.mimocode/
+opencode.json
+AGENTS.md
+.mcp.json
+.ignore
